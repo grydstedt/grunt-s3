@@ -143,7 +143,7 @@ exports.init = function (grunt) {
 
     // If gzip is enabled, gzip the file into a temp file and then perform the
     // upload.
-    if (options.gzip) {
+    if (options.gzip && !((options.gzipExclude || []).indexOf(path.extname(src)) == -1)) {
       headers['Content-Encoding'] = 'gzip';
       headers['Content-Type'] = mime.lookup(src);
 
